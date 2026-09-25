@@ -1,3 +1,10 @@
+export type TipoProduto = {
+    id: String;
+    nome: String;
+    preco: number;
+    estoque: number;
+}
+
 export type TipoUsuarioGit = {
     login: String;
     id: number;
