@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
 import type { TipoProduto } from "../../types/types";
+import { Link } from "react-router";
+import { FaEdit as Editar } from "react-icons/fa";
+import { MdDeleteForever as Delete} from "react-icons/md";
 
 export default function Produtos() {
 
@@ -32,7 +35,35 @@ export default function Produtos() {
     return (
         <main>
             <h2>Produtos</h2>
-            
+            <table border={1} style={{ borderCollapse: "collapse", width: "100%" }}>
+                <thead>
+                    <th>ID</th>
+                    <th>NOME</th>
+                    <th>PRECO</th>
+                    <th>ESTOQUE</th>
+                    <th>ACOES</th>
+
+                </thead>
+                <tbody>
+                    {produtos.map( (p)=>(
+
+                        <tr key={p.id}>
+                            <td>{p.id}</td>
+                            <td>{p.nome}</td>
+                            <td>{p.preco}</td>
+                            <td>{p.estoque}</td>
+                            <td>
+                                <Link to={`/editar-produtos/${p.id}`}><Editar /></Link>  | 
+                                <Link to={`/excluir-produtos/${p.id}`}><Delete /></Link> |
+                            </td>
+
+                        </tr>
+                    ))}
+                </tbody>
+                <tfoot>
+                    <td colSpan={5}>Quantidade de produtos: {produtos.length}</td>
+                </tfoot>
+            </table>
         </main>
     )
 }
